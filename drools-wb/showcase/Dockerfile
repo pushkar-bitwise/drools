@@ -23,8 +23,8 @@ USER root
 RUN chown jboss:jboss $JBOSS_HOME/standalone/configuration/standalone-full-drools.xml && \
 chown jboss:jboss $JBOSS_HOME/standalone/configuration/drools-users.properties && \
 chown jboss:jboss $JBOSS_HOME/standalone/configuration/drools-roles.properties
-RUN mkdir -p /home/wb_git
-RUN chown jboss:jboss /home/wb_git
+RUN mkdir -p $JBOSS_HOME/mygit
+RUN chown jboss:jboss $JBOSS_HOME/mygit
 # Switchback to jboss user
 USER jboss
 

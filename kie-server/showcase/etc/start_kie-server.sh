@@ -27,7 +27,11 @@ if [ -n "$KIE_WB_PORT_8080_TCP" ] &&  [ -n "$KIE_WB_ENV_KIE_CONTEXT_PATH" ] &&  
 fi
 
 # Default arguments for running the KIE Execution server.
-JBOSS_ARGUMENTS=" -b $JBOSS_BIND_ADDRESS -Dorg.kie.server.id=$KIE_SERVER_ID -Dorg.kie.server.user=$KIE_SERVER_USER -Dorg.kie.server.pwd=$KIE_SERVER_PWD -Dorg.kie.server.location=$KIE_SERVER_LOCATION "
+JBOSS_ARGUMENTS=" -b $JBOSS_BIND_ADDRESS -Dorg.kie.server.id=$KIE_SERVER_ID -Dorg.kie.server.user=$KIE_SERVER_USER -Dorg.kie.server.pwd=$KIE_SERVER_PWD -Dorg.kie.server.location=$KIE_SERVER_LOCATION 
+-Dorg.jbpm.server.ext.disabled=true 
+-Dorg.jbpm.ui.server.ext.disabled=true 
+-Dorg.optaplanner.server.ext.disabled=true
+-Dorg.kie.executor.disabled=true "
 echo "Using '$KIE_SERVER_LOCATION' as KIE server location"
 
 # Controller argument for the KIE Execution server. Only enabled if set the environment variable/s or detected container linking.

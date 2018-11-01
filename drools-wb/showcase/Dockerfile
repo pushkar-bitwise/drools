@@ -21,8 +21,7 @@ ADD etc/drools-roles.properties $JBOSS_HOME/standalone/configuration/drools-role
 
 
 # Added files are chowned to root user, change it to the jboss one.
-USER root
-RUN mkdir -p /home/mygit
+
 
 RUN chown jboss:jboss $JBOSS_HOME/standalone/configuration/standalone-full-drools.xml && \
 chown jboss:jboss $JBOSS_HOME/standalone/configuration/drools-users.properties && \
@@ -30,7 +29,14 @@ chown jboss:jboss $JBOSS_HOME/standalone/configuration/drools-roles.properties &
 chown jboss:jboss /home/mygit
 
 # Switchback to jboss user
-#USER jboss
+USER jboss
+
+USER root
+
+RUN mkdir -p /home/mygit
+RUN chown jboss:jboss /home/mygit
+
+USER jboss
 
 ####### RUNNING DROOLS-WB ############
 WORKDIR $JBOSS_HOME/bin/

@@ -18,23 +18,18 @@ ADD etc/standalone-full-drools.xml $JBOSS_HOME/standalone/configuration/standalo
 ADD etc/drools-users.properties $JBOSS_HOME/standalone/configuration/drools-users.properties
 ADD etc/drools-roles.properties $JBOSS_HOME/standalone/configuration/drools-roles.properties
 
-
-
-# Added files are chowned to root user, change it to the jboss one.
-
-
-RUN chown jboss:jboss $JBOSS_HOME/standalone/configuration/standalone-full-drools.xml && \
-chown jboss:jboss $JBOSS_HOME/standalone/configuration/drools-users.properties && \
-chown jboss:jboss $JBOSS_HOME/standalone/configuration/drools-roles.properties 
-
-# Switchback to jboss user
-USER jboss
-
 USER root
-
 RUN mkdir -p /home/mygit
 RUN chown jboss:jboss /home/mygit
+USER jboss
 
+# Added files are chowned to root user, change it to the jboss one.
+USER root
+RUN chown jboss:jboss $JBOSS_HOME/standalone/configuration/standalone-full-drools.xml && \
+chown jboss:jboss $JBOSS_HOME/standalone/configuration/drools-users.properties && \
+chown jboss:jboss $JBOSS_HOME/standalone/configuration/drools-roles.properties
+
+# Switchback to jboss user
 USER jboss
 
 ####### RUNNING DROOLS-WB ############

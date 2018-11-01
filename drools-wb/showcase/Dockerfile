@@ -14,16 +14,17 @@ ENV KIE_SERVER_PROFILE standalone-full-drools
 ENV JAVA_OPTS -Xms256m -Xmx2048m -Djava.net.preferIPv4Stack=true -Dfile.encoding=UTF-8
 
 ####### Drools Workbench CUSTOM CONFIGURATION ############
-RUN mkdir -p /root/.m2
+
 ADD etc/standalone-full-drools.xml $JBOSS_HOME/standalone/configuration/standalone-full-drools.xml
 ADD etc/drools-users.properties $JBOSS_HOME/standalone/configuration/drools-users.properties
 ADD etc/drools-roles.properties $JBOSS_HOME/standalone/configuration/drools-roles.properties
-ADD etc/settings.xml /root/.m2/settings.xml
+
 
 USER root
 RUN mkdir -p /home/mygit
 RUN chown jboss:jboss /home/mygit
-
+RUN mkdir -p /root/.m2
+ADD etc/settings.xml /root/.m2/settings.xml
 
 # Added files are chowned to root user, change it to the jboss one.
 
